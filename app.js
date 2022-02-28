@@ -11,17 +11,17 @@ const searchPhone = () => {
 }
 const displaySearchResult = phones => {
    const searchResult= document.getElementById('search-result');
-   phones.forEach(data => {
-       console.log(data)
+   phones.forEach(phone => {
+       console.log(phone)
        const div = document.createElement('div');
        div.classList.add('col')
-        div.innerHTML = ` <div class="card">
-             <img  src="${data.image}" class="card-img-top  " alt="...">
+        div.innerHTML = ` <div class="card   ">
+             <img  src="${phone.image}" class="card-img-top w-25  mx-auto" alt="...">
              <div class="card-body">
-             <h5 class="card-title">Name:   ${data.phone_name}</h5>
-             <h5 class="card-title">Brand:  ${data.brand}</h5>
-            
-             <a href="#" class="btn btn-primary">Details</a>
+             <h5 class="card-title ">Name:   ${phone.phone_name}</h5>
+             <h5 class="card-title ">Brand:  ${phone.brand}</h5>
+            <p>${phone.slug}</P>
+            <a  href="#" class="btn btn-primary button">Details</a>
        </div>
      </div>`;
      searchResult.appendChild(div)
