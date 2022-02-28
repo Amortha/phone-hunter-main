@@ -7,5 +7,23 @@ const searchPhone = () => {
     console.log(url)
     fetch (url) 
     .then(res => res.json())
-    .then(data => console.log(data.phone))
+    .then(data => displaySearchResult(data.data ))
+}
+const displaySearchResult = phones => {
+   const searchResult= document.getElementById('search-result');
+   phones.forEach(data => {
+       console.log(data)
+       const div = document.createElement('div');
+       div.classList.add('col')
+        div.innerHTML = ` <div class="card">
+             <img  src="${data.image}" class="card-img-top  " alt="...">
+             <div class="card-body">
+             <h5 class="card-title">Name:   ${data.phone_name}</h5>
+             <h5 class="card-title">Brand:  ${data.brand}</h5>
+            
+             <a href="#" class="btn btn-primary">Details</a>
+       </div>
+     </div>`;
+     searchResult.appendChild(div)
+   })
 }
