@@ -1,8 +1,8 @@
 // handle click event
 const searchPhone = () => {
-    const searchField = document.getElementById('search-field')
+const searchField = document.getElementById('search-field')
     // .value.toLowerCase();
-    const searchText = searchField.value;
+ const searchText = searchField.value;
     // console.log(searchText);
     // clear data 
     searchField.value = '';
@@ -12,19 +12,21 @@ const searchPhone = () => {
     .then(data => displaySearchResult(data.data.slice(0,20) ))
 }
 const displaySearchResult = phones => {
+  // Error massage 
   if (phones.length =='') {
     document.getElementById('worn-result').style.display = 'block';
 } 
-else {
+else{
     document.getElementById('worn-result').style.display = 'none';
 }
+   // Search your favorit phone 
    const searchResult= document.getElementById('search-result');
    searchResult.innerHTML ='';
    phones.forEach(phone => {
        console.log(phone)
        const div = document.createElement('div');
        div.classList.add('col')
-       div.innerHTML = ` <div class="card   ">
+       div.innerHTML = `<div class="card">
              <img  src="${phone.image}" class="card-img-top img  mx-auto" alt="...">
              <div class="card-body">
              <h5 class="card-title ">Name:   ${phone.phone_name}</h5>
@@ -35,10 +37,9 @@ else {
      </div>`;
      searchResult.appendChild(div)  
    })
-   // show the phone Detals 
 }
+// show the phone Detals 
 const loadphoneDetali = phoneId =>{
-    // console.log(id)
 const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`;
 fetch(url)
 .then(res => res.json())   
@@ -51,7 +52,7 @@ const phoneDetails = document.getElementById('single-phone-detains');
 phoneDetails.innerHTML = '';
 const div = document.createElement('div');
 div.classList.add('card');
-div.innerHTML = `
+div.innerHTML = ` 
  <div class="card">
  <div class="row g-0 my-5">
  <div class="col-md-7">
