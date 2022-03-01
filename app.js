@@ -1,6 +1,7 @@
-// input area search Phone
+// handle click event
 const searchPhone = () => {
     const searchField = document.getElementById('search-field')
+    // .value.toLowerCase();
     const searchText = searchField.value;
     // console.log(searchText);
     // clear data 
@@ -8,9 +9,15 @@ const searchPhone = () => {
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
     fetch (url) 
     .then(res => res.json()) 
-    .then(data => displaySearchResult(data.data ))
+    .then(data => displaySearchResult(data.data.slice(0,20) ))
 }
 const displaySearchResult = phones => {
+  if (phones.length == '') {
+    document.getElementById('worn-result').style.display = 'block';
+} 
+else {
+    document.getElementById('worn-result').style.display = 'none';
+}
    const searchResult= document.getElementById('search-result');
    searchResult.innerHTML ='';
    phones.forEach(phone => {
@@ -23,7 +30,7 @@ const displaySearchResult = phones => {
              <h5 class="card-title ">Name:   ${phone.phone_name}</h5>
              <h5 class="card-title ">Brand:  ${phone.brand}</h5>
              <p>${phone.slug}</P>
-             <button onclick= "loadphoneDetali('${phone.slug}')" class="btn btn-primary button">Details</button>
+             <button onclick= "loadphoneDetali('${phone.slug}')" class="btn btn-primary button background px-4">Details</button>
        </div>
      </div>`;
      searchResult.appendChild(div)  

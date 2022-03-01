@@ -1,3 +1,11 @@
 .text-color{
   color:rgb(107, 56, 128);
 }
+.background{
+    background-color:rgb(107, 56, 128); 
+    color:white;
+    
+}
+#worn-result {
+    display: none;
+}
