@@ -2,7 +2,7 @@
 const searchPhone = () => {
 const searchField = document.getElementById('search-field')
     // .value.toLowerCase();
- const searchText = searchField.value;
+    const searchText = searchField.value;
     // console.log(searchText);
     // clear data 
     searchField.value = '';
@@ -48,7 +48,7 @@ fetch(url)
     //details card code 
 const displayPhoneDetails = details => {
    //console.log(details);
-const phoneDetails = document.getElementById('single-phone-detains');
+const phoneDetails = document.getElementById('single-phone-details');
 phoneDetails.innerHTML = '';
 const div = document.createElement('div');
 div.classList.add('card');
