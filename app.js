@@ -12,7 +12,7 @@ const searchPhone = () => {
     .then(data => displaySearchResult(data.data.slice(0,20) ))
 }
 const displaySearchResult = phones => {
-  if (phones.length == '') {
+  if (phones.length =='') {
     document.getElementById('worn-result').style.display = 'block';
 } 
 else {
@@ -25,7 +25,7 @@ else {
        const div = document.createElement('div');
        div.classList.add('col')
        div.innerHTML = ` <div class="card   ">
-             <img  src="${phone.image}" class="card-img-top w-25  mx-auto" alt="...">
+             <img  src="${phone.image}" class="card-img-top img  mx-auto" alt="...">
              <div class="card-body">
              <h5 class="card-title ">Name:   ${phone.phone_name}</h5>
              <h5 class="card-title ">Brand:  ${phone.brand}</h5>
@@ -41,7 +41,7 @@ const loadphoneDetali = phoneId =>{
     // console.log(id)
 const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`;
 fetch(url)
-.then(res => res.json()) 
+.then(res => res.json())   
 .then(data => displayPhoneDetails (data.data))
 }
     //details card code 
