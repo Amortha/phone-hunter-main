@@ -1,7 +1,6 @@
 // handle click event
 const searchPhone = () => {
 const searchField = document.getElementById('search-field')
-    // .value.toLowerCase();
     const searchText = searchField.value;
     // console.log(searchText);
     // clear data 
@@ -23,7 +22,7 @@ else{
    const searchResult= document.getElementById('search-result');
    searchResult.innerHTML ='';
    phones.forEach(phone => {
-       console.log(phone)
+      //  console.log(phone)
        const div = document.createElement('div');
        div.classList.add('col')
        div.innerHTML = `<div class="card">
@@ -39,42 +38,85 @@ else{
    })
 }
 // show the phone Detals 
-const loadphoneDetali = phoneId =>{
+const loadphoneDetali = (phoneId) =>{
 const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`;
 fetch(url)
 .then(res => res.json())   
-.then(data => displayPhoneDetails (data.data))
+.then(data => displayMobileDetails (data))
 }
-    //details card code 
-const displayPhoneDetails = details => {
-   //console.log(details);
-const phoneDetails = document.getElementById('single-phone-details');
-phoneDetails.innerHTML = '';
-const div = document.createElement('div');
-div.classList.add('card');
-div.innerHTML = ` 
- <div class="card">
- <div class="row g-0 my-5">
- <div class="col-md-7">
- <div class="card-body">
-      <h4>Brand Name: ${details.brand}</h4>
-      <h5 class="card-title">Model : ${details.name}</h5>
-      <p class="card-text">${details.releaseDate}</p>
-      <p>Storage: ${details.mainFeatures.storage}</p>
-      <span>ChipSet: ${details.mainFeatures.chipSet}</span></br>
-      <span>${details.others.Bluetooth}</span>
-      <span>usb: ${details.others.USB}</span></br>
-      <span>Disply Size: ${details.mainFeatures.displaySize}</span></br>
-      <span>Memory : ${details.mainFeatures.memory}</span>
-      <p class="card-text"><small class="text-muted">Date: ${details.releaseDate}</small></p>
-  </div>
-  </div>
-  <div class="col-md-5">
-  <img src="${details.image}" class="img-fluid rounded-start w-50" alt="...">
-  </div>
-</div>
-</div>
-`;
-phoneDetails.appendChild(div);
+const displayMobileDetails = data => {
+  const parant = document.getElementById('details-section');
+  // if releaseDate condition code 
+  if (data.data.releaseDate == '') {
+      parant.innerHTML = `
+     <div class="card m-auto" style="width:60%">
+     <img src="${data.data.image}" class="card-img-top  img mx-auto">
+     <div class="card-body">
+         <h5 class="card-title">releaseDate: </h5>
+         <p class="card-text">No Release date Found</p>
+     </div>
+     <ul class="list-group list-group-flush">
+         <li class="list-group-item">Chipset: ${data.data.mainFeatures.chipSet}</li>
+         <li class="list-group-item">display size: ${data.data.mainFeatures.displaySize}</li>
+         <li class="list-group-item">memory: ${data.data.mainFeatures.memory}</li>
+     </ul>
+     <p class="p-2">
+   <span class="sensor-others">sensors :</span>
+     ${data.data.mainFeatures.sensors[0]},
+     ${data.data.mainFeatures.sensors[1]},
+     ${data.data.mainFeatures.sensors[2]},
+     ${data.data.mainFeatures.sensors[3]},
+     ${data.data.mainFeatures.sensors[4]},
+     ${data.data.mainFeatures.sensors[5]}
+     </p>
+     <ul class="list-group list-group-flush">
+     <li class="list-group-item  sensor-others">Others:</li>
+     <li class="list-group-item">Blouetooth: ${data.data.others.Bluetooth}</li>
+     <li class="list-group-item">GPS: ${data.data.others.GPS}</li>
+     <li class="list-group-item">NFC: ${data.data.others.NFC}</li>
+     <li class="list-group-item">Radio: ${data.data.others.Radio}</li>
+     <li class="list-group-item">WLAN: ${data.data.others.WLAN}</li>
+     </ul>
+ </div>
+    `
+  }
+  // else releaseDate not found condition code
+   else {
+      parant.innerHTML = `
+     <div class="card m-auto" style="width:60%">
+     <img src="${data.data.image}" class="card-img-top img mx-auto">
+     <div class="card-body">
+         <h5 class="card-title">releaseDate: </h5>
+         <p class="card-text">${data.data.releaseDate}</p>
+     </div>
+     <ul class="list-group list-group-flush">
+         <li class="list-group-item">Chipset: ${data.data.mainFeatures.chipSet}</li>
+         <li class="list-group-item">display Size: ${data.data.mainFeatures.displaySize}</li>
+         <li class="list-group-item">Memory: ${data.data.mainFeatures.memory}</li>
+     </ul>
+     <p class="p-2">
+     <span class="sensor-others">sensors :</span>
+     ${data.data.mainFeatures.sensors[0]},
+     ${data.data.mainFeatures.sensors[1]},
+     ${data.data.mainFeatures.sensors[2]},
+     ${data.data.mainFeatures.sensors[3]},
+     ${data.data.mainFeatures.sensors[4]},
+     ${data.data.mainFeatures.sensors[5]}
+     </p>
+     <ul class="list-group list-group-flush">
+     <li class="list-group-item  sensor-others">Others:</li>
+     <li class="list-group-item">Blouetooth: ${data.data.others.Bluetooth}</li>
+     <li class="list-group-item">GPS: ${data.data.others.GPS}</li>
+     <li class="list-group-item">NFC: ${data.data.others.NFC}</li>
+     <li class="list-group-item">Radio: ${data.data.others.Radio}</li>
+     <li class="list-group-item">WLAN: ${data.data.others.WLAN}</li>
+     </ul>
+ </div>
+   `
+  }
 
-}
+  //console.log(data.data.mainFeatures)
+  // console.log(data);
+} 
+
+

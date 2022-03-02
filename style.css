@@ -1,14 +1,24 @@
+/* heading text color  */
 .text-color{
   color:rgb(107, 56, 128);
 }
+/* button backgroun color  */
 .background{
     background-color:rgb(107, 56, 128); 
     color:white;
-    
 }
+/* Error msage css  */
 #worn-result {
     display: none;
 }
+/* image width  */
 .img{
     width: 40%;
+}
+/* sensor text css  */
+.sensor-others{
+    font-size:20px;
+    font-weight: bold;
+    color:black;
+
 }
